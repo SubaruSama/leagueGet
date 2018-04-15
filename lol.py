@@ -1,5 +1,10 @@
 import requests
 
+'''
+TODO: how the fuck python parse the json string?
+save to a file everything? meeh lets see it
+'''
+
 # def requestDivisions(self, region, summoner, api):
 
 def requestChallenjours(region, queue, api):
@@ -13,6 +18,11 @@ def requestChallenjours(region, queue, api):
         # wins -- about the player
         # losses -- about the player
         return get.json()
+
+def requestPlayerData(region, ID, api): # or requestPlayerData(region, summonerName, api): ?
+	URL = None # read the doc on riot api
+	get = request.get(URL)
+	return get.json()
 
 def main():
     print("Current, only GET all of the Challenger on a certain region.")
@@ -36,11 +46,16 @@ def main():
             # print("It looks like you have entered: {}, {}, {}".format(region, summoner, api))
             print(requestChallenjours(region, queue, api))
 
+	elif option == 2:
+	   region = str(input("[*] Enter the region: "))
+	   summoner = str(input("[*] Enter the summoner ID: "))
+	   # how does the api search for a summoner? summoner ID or summonerName???
+	   summonerName = str(input("[*] Enter the summoner Name: "))
+	   api = str(input("[*] Enter your API key: "))
+	   print(requestPlayerData(region, summoner, api)) # or requestPlayerData(region, summonerName, api))
+
     except ValueError:
             print("Only numbers allowed")
-
-    if option != 1:
-        print("More functionalities to come")
 
 if __name__ == "__main__":
     main()
